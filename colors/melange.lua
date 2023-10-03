@@ -4,7 +4,7 @@ vim.g.colors_name = 'melange'
 
 local bg = vim.opt.background:get()
 
-package.loaded['melange/palettes/' .. bg] = nil -- Only needed for development
+-- package.loaded['melange/palettes/' .. bg] = nil -- Only needed for development
 local palette = require('melange/palettes/' .. bg)
 
 local a = palette.a -- Grays
@@ -468,7 +468,7 @@ for name, attrs in pairs {
   },
   TelescopePromptTitle = {
     fg = a.fg,
-    bg = d.red,
+    bg = d.magenta,
   },
   TelescopePreviewTitle = {
     fg = a.fg,
