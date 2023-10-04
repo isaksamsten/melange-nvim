@@ -70,7 +70,7 @@ for name, attrs in pairs {
   PmenuMatchSel = { fg = b.yellow, bold = bold, bg = a.sel },
   PmenuBorder = 'FloatBorder',
 
-  StatusLine = { fg = a.float0, bg = a.float0 },
+  StatusLine = { fg = a.float, bg = a.float },
   StatusLineNC = 'StatusLine',
   WildMenu = 'NormalFloat',
 
