@@ -50,17 +50,17 @@ for name, attrs in pairs {
   CursorLine = { bg = a.float0 },
   VertSplit = { fg = a.ui, bg = a.float },
 
-  LineNr = { fg = a.ui, bg = a.float },
-  LineNC = { fg = a.ui, bg = a.float },
-  CursorLineNr = { fg = c.yellow, bg = a.float },
-  CursorLineSign = { fg = a.sel, nocombine = true, bg = a.float },
+  LineNr = { fg = a.sel, bg = a.bg },
+  LineNC = { fg = a.sel, bg = a.bg },
+  CursorLineNr = { fg = c.yellow, bg = a.bg },
+  CursorLineSign = { fg = a.sel, nocombine = true, bg = a.bg },
 
   Folded = { fg = a.com, bg = d.cyan },
   FoldColumn = 'LineNr',
-  SignColumn = { fg = a.sel, nocombine = true, bg = a.float },
+  SignColumn = { fg = a.sel, nocombine = true, bg = a.bg },
   StatusColumnSeparator = { fg = a.sel, nocombine = true, bg = a.bg },
 
-  WinSeparator = 'StatusLine',
+  WinSeparator = { fg = a.bg1, bg = a.bg },
 
   Pmenu = 'NormalFloat',
   PmenuSel = { bg = a.sel },
@@ -70,13 +70,13 @@ for name, attrs in pairs {
   PmenuMatchSel = { fg = b.yellow, bold = bold, bg = a.sel },
   PmenuBorder = 'FloatBorder',
 
-  StatusLine = { fg = a.float, bg = a.float },
-  StatusLineNC = 'StatusLine',
+  StatusLine = { fg = a.ui, bg = a.bg },
+  StatusLineNC = { fg = a.sel, nocombine = true, bg = a.bg },
   WildMenu = 'NormalFloat',
 
   TabLine = 'StatusLineNC',
   TabLineFill = 'StatusLine',
-  TabLineSel = { bg = a.float, bold = bold },
+  TabLineSel = { bg = a.bg, bold = bold },
 
   MatchParen = { fg = b.yellow, bg = a.sel, bold = bold },
   Search = { fg = a.bg, bg = d.yellow, bold = bold },
@@ -96,7 +96,7 @@ for name, attrs in pairs {
   Title = { fg = c.yellow },
   ErrorMsg = { bg = d.red },
   ModeMsg = { fg = a.com },
-  -- MsgArea = {},
+  MsgArea = { fg = a.ui, bg = a.bg },
   -- MsgSeparator = {},
   MoreMsg = { fg = c.green, bold = bold },
   WarningMsg = { fg = c.red },
@@ -372,7 +372,7 @@ for name, attrs in pairs {
   NeoTreeNormal = 'NormalFloat',
   NeoTreeNormalNC = 'NeoTreeNormal',
   NeoTreeVertSplit = { bg = a.bg, fg = a.bg },
-  NeoTreeWinSeparator = { bg = a.float, fg = a.float },
+  NeoTreeWinSeparator = { bg = a.bg, fg = a.bg },
 
   NeoTreeCursorLine = { bg = a.sel },
 

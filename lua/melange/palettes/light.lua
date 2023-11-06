@@ -2,6 +2,7 @@
 return {
   a = {
     bg      = "#F1F1F1",
+    bg1     = "#a9a9a9",
     float   = "#f2ede9",
     float0  = "#f0eae6",
     sel     = "#D9D3CE",
