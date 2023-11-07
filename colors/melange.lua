@@ -58,7 +58,7 @@ for name, attrs in pairs {
   Folded = { fg = a.com, bg = d.cyan },
   FoldColumn = 'LineNr',
   SignColumn = { fg = a.sel, nocombine = true, bg = a.bg },
-  StatusColumnSeparator = { fg = a.sel, nocombine = true, bg = a.bg },
+  StatusColumnSeparator = { fg = a.bg, nocombine = true, bg = a.bg },
 
   WinSeparator = { fg = a.bg1, bg = a.bg },
 
