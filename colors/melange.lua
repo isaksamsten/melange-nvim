@@ -146,10 +146,10 @@ for name, attrs in pairs {
 
   ---- :help spell -------------------------------------------
 
-  SpellBad = { fg = c.red, undercurl = undercurl },
-  SpellCap = { fg = c.blue, undercurl = undercurl },
-  SpellLocal = { fg = c.yellow, undercurl = undercurl },
-  SpellRare = { fg = b.yellow, undercurl = undercurl },
+  SpellBad = { sp = c.red, undercurl = undercurl },
+  SpellCap = { sp = c.blue, undercurl = undercurl },
+  SpellLocal = { sp = c.yellow, undercurl = undercurl },
+  SpellRare = { sp = b.yellow, undercurl = undercurl },
 
   ---- :help group-name --------------------------------------
 
