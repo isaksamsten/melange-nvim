@@ -2,7 +2,8 @@
 return {
   a = {
     bg      = "#F1F1F1",
-    float   = "#E9E1DB",
+    float   = "#f2ede9",
+    float0  = "#f0eae6",
     sel     = "#D9D3CE",
     ui      = "#A98A78",
     com     = "#7D6658",

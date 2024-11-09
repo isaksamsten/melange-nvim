@@ -4,7 +4,7 @@ vim.g.colors_name = 'melange'
 
 local bg = vim.opt.background:get()
 
--- package.loaded['melange/palettes/' .. bg] = nil -- Only needed for development
+package.loaded['melange/palettes/' .. bg] = nil -- Only needed for development
 local palette = require('melange/palettes/' .. bg)
 
 local a = palette.a -- Grays
@@ -30,12 +30,13 @@ elseif type(vim.g.melange_enable_font_variants) == 'table' then
 end
 
 for name, attrs in pairs {
+
   ---- :help highlight-default -------------------------------
 
   Normal = { fg = a.fg, bg = a.bg },
   NormalFloat = { bg = a.float },
-  FloatTitle = { fg = c.yellow, bg = a.float },
-  FloatFooter = { fg = c.yellow, bg = a.float },
+  FloatBorder = { bg = a.float },
+  PopupBorder = 'FloatBorder',
   -- NormalNC = {},
 
   -- Cursor = {},
@@ -44,18 +45,22 @@ for name, attrs in pairs {
   -- TermCursor = {},
   TermCursorNC = { bg = a.sel },
 
-  ColorColumn = { bg = a.float },
+  ColorColumn = { bg = a.bg },
   CursorColumn = 'ColorColumn',
-  CursorLine = 'ColorColumn',
-  VertSplit = { fg = a.ui },
-  WinSeparator = { fg = a.ui },
+  CursorLine = { bg = a.float0 },
+  VertSplit = { fg = a.ui, bg = a.float },
 
-  LineNr = { fg = a.ui },
-  CursorLineNr = { fg = c.yellow },
+  LineNr = { fg = a.ui, bg = a.float },
+  LineNC = { fg = a.ui, bg = a.float },
+  CursorLineNr = { fg = c.yellow, bg = a.float },
+  CursorLineSign = { fg = a.sel, nocombine = true, bg = a.float },
 
   Folded = { fg = a.com, bg = d.cyan },
   FoldColumn = 'LineNr',
-  SignColumn = 'LineNr',
+  SignColumn = { fg = a.sel, nocombine = true, bg = a.float },
+  StatusColumnSeparator = { fg = a.sel, nocombine = true, bg = a.bg },
+
+  WinSeparator = 'StatusLine',
 
   Pmenu = 'NormalFloat',
   PmenuSel = { bg = a.sel },
@@ -63,9 +68,10 @@ for name, attrs in pairs {
   PmenuThumb = 'PmenuSel',
   PmenuMatch = { fg = b.yellow, bold = bold, bg = a.float },
   PmenuMatchSel = { fg = b.yellow, bold = bold, bg = a.sel },
+  PmenuBorder = 'FloatBorder',
 
-  StatusLine = 'NormalFloat',
-  StatusLineNC = { fg = a.com, bg = a.float },
+  StatusLine = { fg = a.float0, bg = a.float0 },
+  StatusLineNC = 'StatusLine',
   WildMenu = 'NormalFloat',
 
   TabLine = 'StatusLineNC',
@@ -96,6 +102,34 @@ for name, attrs in pairs {
   WarningMsg = { fg = c.red },
   Question = 'MoreMsg',
 
+  ---- :help cmp ---------------------------------------------
+
+  CmpItemAbbrMatch = { fg = c.blue, bold = bold },
+  CmpItemMenu = { fg = a.fg, bg = 'none' },
+  CmpItemAbbrMatchFuzzy = { fg = c.blue, underline = true },
+
+  CmpDocumentation = 'Pmenu',
+  CmpDocumentationBorder = 'FloatBorder',
+
+  CmpItemKindText = { fg = c.yellow },
+  CmpItemKindMethod = { fg = c.blue },
+  CmpItemKindFunction = { link = 'CmpItemKindMethod' },
+  CmpItemKindConstructor = { fg = c.yellow },
+  CmpItemKindField = { fg = c.blue },
+  CmpItemKindClass = { fg = c.yellow },
+  CmpItemKindInterface = { link = 'CmpItemKindClass' },
+  CmpItemKindModule = { fg = c.blue },
+  CmpItemKindProperty = { fg = c.blue },
+  CmpItemKindValue = { fg = c.yellow },
+  CmpItemKindEnum = { fg = c.yellow },
+  CmpItemKindKeyword = { fg = c.magenta },
+  CmpItemKindSnippet = { fg = c.green },
+  CmpItemKindFile = { fg = c.blue },
+  CmpItemKindEnumMember = { fg = c.cyan },
+  CmpItemKindConstant = { fg = c.green },
+  CmpItemKindStruct = { fg = c.yellow },
+  CmpItemKindTypeParameter = { fg = c.yellow },
+
   ---- :help :diff -------------------------------------------
 
   DiffAdd = { bg = d.green },
@@ -105,6 +139,10 @@ for name, attrs in pairs {
 
   DiffAdded = 'DiffAdd',
   DiffRemoved = 'DiffDelete',
+
+  diffAdded = 'DiffAdd',
+  diffChanged = 'DiffChange',
+  diffRemoved = 'DiffDelete',
 
   ---- :help spell -------------------------------------------
 
@@ -119,7 +157,7 @@ for name, attrs in pairs {
   Identifier = { fg = a.fg },
   Function = { fg = b.yellow },
   Constant = { fg = c.magenta },
-  String = { fg = b.blue, italic = italic },
+  String = { fg = b.blue, italic = false },
   Character = { fg = c.blue },
   Number = { fg = b.magenta },
   Boolean = 'Number',
@@ -271,24 +309,20 @@ for name, attrs in pairs {
   DiagnosticUnderlineInfo = { undercurl = undercurl, sp = c.blue },
   DiagnosticUnderlineHint = { undercurl = undercurl, sp = c.cyan },
   DiagnosticUnderlineOk = { undercurl = undercurl, sp = c.green },
-  -- DiagnosticVirtualTextError = {},
-  -- DiagnosticVirtualTextWarn = {},
-  -- DiagnosticVirtualTextInfo = {},
-  -- DiagnosticVirtualTextHint = {},
-  -- DiagnosticVirtualTextOk = {},
-  -- DiagnosticFloatingError = {},
-  -- DiagnosticFloatingWarn = {},
-  -- DiagnosticFloatingInfo = {},
-  -- DiagnosticFloatingHint = {},
-  -- DiagnosticFloatingOk = {},
+  DiagnosticFloatingError = { fg = a.fg, bg = a.float },
+  DiagnosticFloatingWarn = { fg = a.fg, bg = a.float },
+  DiagnosticFloatingInfo = { fg = a.fg, bg = a.float },
+  DiagnosticFloatingHint = { fg = a.fg, bg = a.float },
+  DiagnosticFloatingOk = { fg = a.fg, bg = a.float },
+  DiagnosticFloatingSuffix = { fg = a.com, bg = a.float },
   -- DiagnosticSignError = {},
   -- DiagnosticSignWarn = {},
   -- DiagnosticSignInfo = {},
   -- DiagnosticSignHint = {},
   -- DiagnosticSignOk = {},
 
-  DiagnosticDeprecated = { DiagnosticUnderlineError },
-  DiagnosticUnnecessary = { undercurl = undercurl, sp = a.com },
+  DiagnosticDeprecated = { link = 'DiagnosticUnderlineError' },
+  DiagnosticUnnecessary = { fg = a.com, undercurl = undercurl },
 
   ---- :help lsp-highlight -----------------------------------
 
@@ -338,9 +372,30 @@ for name, attrs in pairs {
   NeoTreeNormal = 'NormalFloat',
   NeoTreeNormalNC = 'NeoTreeNormal',
   NeoTreeVertSplit = { bg = a.bg, fg = a.bg },
-  NeoTreeWinSeparator = 'NeoTreeVertSplit',
+  NeoTreeWinSeparator = { bg = a.float, fg = a.float },
 
   NeoTreeCursorLine = { bg = a.sel },
+
+  NeoTreeSymbolicLinkTarget = { fg = c.cyan },
+  NeoTreeDirectoryName = { fg = c.blue },
+  NeoTreeDirectoryIcon = { fg = c.blue },
+  NeoTreeRootName = { fg = c.blue },
+  NeoTreeFileIcon = { fg = c.blue },
+  NeoTreeFileName = { fg = a.fg },
+  NeoTreeFileNameOpened = { fg = c.magenta },
+  -- NeoTreeIndentMarker = { fg = theme.palette.gray },
+  -- NeoTreeTitleBar = { fg = theme.palette.bg, bg = theme.palette.purple },
+  -- NeoTreeFloatTitle = { fg = theme.palette.bg, bg = theme.palette.purple },
+  -- NeoTreeGitAdded = { fg = theme.palette.green },
+  -- NeoTreeGitConflict = { fg = theme.palette.blue },
+  -- NeoTreeGitDeleted = { fg = theme.palette.red },
+  -- NeoTreeGitModified = { fg = theme.palette.yellow },
+  -- NeoTreeGitIgnored = { fg = theme.palette.gray },
+  -- NeoTreeGitUntracked = { fg = theme.palette.gray },
+  NeoTreeModified = { fg = c.magenta },
+
+  NeoTreeFloatBorder = { fg = a.float0, bg = a.float0 },
+  NeoTreeTitleBar = { fg = a.fg, bg = a.float0 },
 
   --- netrw: there's no comprehensive list of highlights... --
 
@@ -395,6 +450,83 @@ for name, attrs in pairs {
   CmpItemKindConstant = '@constant',
   CmpItemKindColor = '@constant',
   CmpItemKindClass = '@type',
+  MiniIndentscopeSymbol = { link = 'IndentBlanklineChar' },
+
+  TelescopeBorder = {
+    fg = a.float,
+    bg = a.float,
+  },
+  TelescopePromptBorder = {
+    fg = a.float,
+    bg = a.float,
+  },
+  TelescopePromptCounter = { fg = c.red },
+  TelescopePromptNormal = { fg = a.fg, bg = a.float },
+  TelescopePromptPrefix = {
+    fg = c.red,
+    bg = a.float,
+  },
+  TelescopePromptTitle = {
+    fg = a.fg,
+    bg = d.red,
+  },
+  TelescopePreviewTitle = {
+    fg = a.fg,
+    bg = d.green,
+  },
+  TelescopeResultsTitle = {
+    fg = a.float,
+    bg = a.float,
+  },
+  TelescopeMatching = { fg = b.blue },
+  TelescopeNormal = { bg = a.float },
+  TelescopeSelection = { bg = a.sel },
+  TelescopePreviewNormal = { bg = a.float0 },
+  TelescopePreviewBorder = { fg = a.float0, bg = a.float0 },
+
+  -- h neo-test
+  NeotestAdapterName = { fg = c.magenta },
+  -- NeotestBorder not implemented yet
+  NeotestDir = { fg = c.cyan },
+  NeotestExpandMarker = { fg = a.com },
+  NeotestFile = { fg = c.cyan },
+  NeotestFocused = { bg = a.sel },
+  NeotestIndent = { fg = a.fg },
+  NeotestNamespace = { fg = c.blue },
+  NeotestFailed = { fg = b.red, bg = a.float },
+  NeotestPassed = { fg = b.green, bg = a.float },
+  NeotestRunning = { fg = b.yellow, bg = a.float },
+  NeotestSkipped = { fg = b.cyan, bg = a.float },
+
+  DapUIScope = { fg = c.blue },
+  DapUIType = { fg = c.blue },
+  DapUIDecoration = { fg = c.blue },
+  DapUIModifiedValue = { fg = c.cyan },
+  DapUIThread = { fg = c.magenta },
+  DapUIStoppedThread = { fg = c.yellow },
+  DapUILineNumber = { fg = a.com },
+  DapUIFrameName = { fg = a.fg },
+  DapUISource = { fg = c.purple },
+  DapUIBreakpointsPath = { fg = c.yellow },
+  DapUIBreakpointsInfo = { fg = a.fg },
+  DapUIBreakpointsCurrentLine = { fg = b.yellow },
+  DapUIBreakpointsLine = { link = 'DapUIBreakpointsCurrentLine' },
+  DapUIWatchesEmpty = { fg = c.red },
+  DapUIWatchesValue = { fg = c.red },
+  DapUIWatchesError = { fg = c.red },
+  DapUINormalFloat = { link = 'FloatNormal' },
+  DapUIFloatBorder = { link = 'FloatBorder' },
+
+  -- h dap
+  DebugLogPoint = { fg = b.yellow, bg = a.float },
+  DebugStopped = { fg = b.yellow, bg = a.float },
+  DebugStoppedLine = { fg = b.yellow, bg = a.float, bold = bold },
+  DebugBreakpointRejected = { fg = c.magenta, bg = a.float },
+  DebugBreakpoint = { fg = c.red, bg = a.float },
+  DebugBreakpointLine = { fg = c.red, bg = a.float, bold = bold },
+  DebugHighlight = { fg = c.blue, bg = a.float },
+  DebugHighlightLine = { fg = c.purple, bg = a.float, bold = bold },
+  NvimDapVirtualText = { fg = c.cyan },
 } do
   if type(attrs) == 'table' then
     vim.api.nvim_set_hl(0, name, attrs)
