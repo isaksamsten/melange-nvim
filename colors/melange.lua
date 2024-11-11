@@ -50,17 +50,17 @@ for name, attrs in pairs {
   CursorLine = { bg = a.float0 },
   VertSplit = { fg = a.ui, bg = a.float },
 
-  LineNr = { fg = a.sel, bg = a.bg },
-  LineNC = { fg = a.sel, bg = a.bg },
+  LineNr = { fg = a.ui, bg = a.bg },
+  LineNC = { fg = a.ui, bg = a.bg },
   CursorLineNr = { fg = c.yellow, bg = a.bg },
   CursorLineSign = { fg = a.sel, nocombine = true, bg = a.bg },
 
   Folded = { fg = a.com, bg = d.cyan },
   FoldColumn = 'LineNr',
-  SignColumn = { fg = a.sel, nocombine = true, bg = a.bg },
+  SignColumn = { fg = a.ui, nocombine = true, bg = a.bg },
   StatusColumnSeparator = { fg = a.bg, nocombine = true, bg = a.bg },
 
-  WinSeparator = { fg = a.bg1, bg = a.bg },
+  WinSeparator = { fg = a.sep, bg = a.bg },
 
   Pmenu = 'NormalFloat',
   PmenuSel = { bg = a.sel },
@@ -81,7 +81,7 @@ for name, attrs in pairs {
   MatchParen = { fg = b.yellow, bg = a.sel, bold = bold },
   Search = { fg = a.bg, bg = d.yellow, bold = bold },
   Substitute = { bg = d.red, bold = bold },
-  -- QuickFixLine = {},
+  QuickFixLine = { bg = 'NONE', bold = true },
   -- IncSearch = {},
   Visual = { bg = a.sel },
   -- VisualNOS = {},
@@ -95,8 +95,8 @@ for name, attrs in pairs {
   Directory = { fg = c.cyan },
   Title = { fg = c.yellow },
   ErrorMsg = { bg = d.red },
-  ModeMsg = { fg = a.com },
-  MsgArea = { fg = a.ui, bg = a.bg },
+  ModeMsg = { fg = a.fg },
+  MsgArea = { fg = a.fg, bg = a.bg },
   -- MsgSeparator = {},
   MoreMsg = { fg = c.green, bold = bold },
   WarningMsg = { fg = c.red },
@@ -104,37 +104,16 @@ for name, attrs in pairs {
 
   ---- :help cmp ---------------------------------------------
 
-  CmpItemAbbrMatch = { fg = c.blue, bold = bold },
   CmpItemMenu = { fg = a.fg, bg = 'none' },
-  CmpItemAbbrMatchFuzzy = { fg = c.blue, underline = true },
 
   CmpDocumentation = 'Pmenu',
   CmpDocumentationBorder = 'FloatBorder',
-
-  CmpItemKindText = { fg = c.yellow },
-  CmpItemKindMethod = { fg = c.blue },
-  CmpItemKindFunction = { link = 'CmpItemKindMethod' },
-  CmpItemKindConstructor = { fg = c.yellow },
-  CmpItemKindField = { fg = c.blue },
-  CmpItemKindClass = { fg = c.yellow },
-  CmpItemKindInterface = { link = 'CmpItemKindClass' },
-  CmpItemKindModule = { fg = c.blue },
-  CmpItemKindProperty = { fg = c.blue },
-  CmpItemKindValue = { fg = c.yellow },
-  CmpItemKindEnum = { fg = c.yellow },
-  CmpItemKindKeyword = { fg = c.magenta },
-  CmpItemKindSnippet = { fg = c.green },
-  CmpItemKindFile = { fg = c.blue },
-  CmpItemKindEnumMember = { fg = c.cyan },
-  CmpItemKindConstant = { fg = c.green },
-  CmpItemKindStruct = { fg = c.yellow },
-  CmpItemKindTypeParameter = { fg = c.yellow },
 
   ---- :help :diff -------------------------------------------
 
   DiffAdd = { bg = d.green },
   DiffChange = { bg = d.magenta },
-  DiffDelete = { bg = d.red },
+  DiffDelete = { fg = c.red, bg = d.red },
   DiffText = { bg = d.blue },
 
   DiffAdded = 'DiffAdd',
@@ -459,6 +438,20 @@ for name, attrs in pairs {
   MiniFilesFile = { fg = a.fg, bg = a.float },
   MiniFilesDirectory = { fg = b.blue, bg = a.float },
   MiniFilesCursorLine = { fg = 'none', bg = a.float },
+
+  MiniPickBorder = { link = 'MiniFilesBorder' },
+  MiniPickBorderBusy = { link = 'MiniFilesBorder' },
+  MiniPickBorderText = { link = 'MiniPickHeader' },
+  MiniPickHeader = { fg = c.red, bg = a.float },
+  MiniPickMatchCurrent = { link = 'PmenuSel' },
+  MiniPickMatchMarked = { fg = c.cyan },
+  MiniPickMatchRanges = { fg = c.red, bold = true },
+  MiniPickNormal = { fg = a.fg, bg = a.float },
+  MiniPickPreviewLine = { fg = c.red, bg = d.red, bold = true },
+  MiniPickPreviewRegion = { fg = c.red, bg = d.red, bold = true },
+  MiniPickPrompt = { bg = a.float },
+
+  WhichKeySeparator = { link = 'WinSeparator' },
 
   TelescopeBorder = {
     fg = a.float,
